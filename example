@@ -1,3 +1,5 @@
+Mar  2 13:38:18 dijkstra nmon: CPU_ALL,CPU Total dijkstra,User%,Sys%,Wait%,Idle%,Steal%,Busy,CPUs
+Mar  2 13:38:18 dijkstra nmon: MEM,Memory MB dijkstra,memtotal,hightotal,lowtotal,swaptotal,memfree,highfree,lowfree,swapfree,memshared,cached,active,bigfree,buffers,swapcached,inactive
 Mar  2 15:46:42 dijkstra nmon: ZZZZ,T7603,15:46:42,02-MAR-2020
 Mar  2 15:46:42 dijkstra nmon: CPU_ALL,T7603,13.1,2.7,0.0,84.2,0.0,,8
 Mar  2 15:46:42 dijkstra nmon: MEM,T7603,15963.2,-0.0,-0.0,2048.8,12739.6,-0.0,-0.0,2048.8,-0.0,1294.6,2187.1,-1.0,144.1,0.0,737.3

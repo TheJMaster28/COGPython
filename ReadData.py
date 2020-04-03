@@ -5,6 +5,17 @@ f = open(file, "r")
 data = open(file + '.dat', 'w')
 for line in f:
     # line = f.readline()
+
+    pattern = re.compile('(User%)')
+    l = pattern.findall(line)
+    if l:
+        continue
+
+    pattern = re.compile('(memtotal)')
+    l = pattern.findall(line)
+    if l:
+        continue
+
     pattern = re.compile('ZZZZ,(.*)')
     l = pattern.findall(line)
     if l:
