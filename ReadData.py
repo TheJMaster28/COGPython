@@ -4,39 +4,46 @@ file = sys.argv[1]
 f = open(file, "r")
 data = open(file + '.dat', 'w')
 for line in f:
-    # line = f.readline()
 
-    pattern = re.compile('(User%)')
+    # Writes key as a comment for .dat file for gnuplot
+    # gets CPU key first
+    pattern = re.compile('CPU_ALL,CPU Total [a-zA-Z]*,(.*)')
     l = pattern.findall(line)
     if l:
+        x = l[0].split(',')
+        # print(x)
+        data.write("# {}      {}      {}      {}      {}      {}      {}      ".format(
+            x[0], x[1], x[2], x[3], x[4], x[5], x[6]))
+        # move on to next line to avoid overlap with other regex
         continue
 
-    pattern = re.compile('(memtotal)')
+    # gets MEM key after CPU key
+    pattern = re.compile('MEM,Memory MB [a-zA-Z]*,(.*)')
     l = pattern.findall(line)
     if l:
+        x = l[0].split(',')
+        # print(x)
+        data.write("{}      {}      {}      {}      {}      {}      {}      {}      {}      {}      {}      {}      {}      {}      {}\n".format(
+            x[0], x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8], x[9], x[10], x[11], x[12], x[13], x[14]))
+        # move on to next line to avoid overlap with other regex
         continue
 
+    # gets time, date, and name of sample
     pattern = re.compile('ZZZZ,(.*)')
     l = pattern.findall(line)
     if l:
         x = l[0].split(",")
-        print(x)
+        # print(x)
         name = x[0]
         time = x[1]
         date = x[2]
-        # pattern = re.compile('[0-9]+:[0-9]+:[0-9]+')
-        # time = pattern.findall(l[0])
-        # print(time)
 
-        # pattern = re.compile('[00-31]+-[A-Z]+-[0-9]+')
-        # date = pattern.findall(l[0])
-        # print(date)
-
+    # gets CPU sample data
     pattern = re.compile('CPU_ALL,{},(.*)'.format(name))
     l = pattern.findall(line)
     if l:
         x = l[0].split(',')
-        print(x)
+        # print(x)
         user = x[0]
         sys = x[1]
         wait = x[2]
@@ -47,11 +54,12 @@ for line in f:
             busy = "0"
         cores = x[6]
 
+    # GETS MEM sample data
     pattern = re.compile('MEM,{},(.*)'.format(name))
     l = pattern.findall(line)
     if l:
         x = l[0].split(',')
-        print(x)
+        # print(x)
         memtotal = x[0]
         hightotal = x[1]
         lowtotal = x[2]
@@ -67,9 +75,10 @@ for line in f:
         buffers = x[12]
         swapcached = x[13]
         inactive = x[14]
+
+        # Writes all sample data in a form that gnuplot can read for graphing
         data.write("{}      {}      {}      {}      {}      {}      {}      {}      {}      {}      {}      {}      {}      {}      {}      {}      {}      {}      {}      {}      {}      {}      {}      {}      {}\n".format(name, date, time, user, sys, wait, idle, steal, busy, cores, memtotal, hightotal, lowtotal,
                                                                                                                                                                                                                                  swaptotal, memfree, highfree, lowfree, swapfree, memshared, cached, active, bigfree, buffers, swapcached, inactive))
-
-    print('done with line')
 f.close()
 data.close()
+print("Done with file")
