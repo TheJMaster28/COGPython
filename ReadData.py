@@ -1,3 +1,4 @@
+# to run, use python ReadData.py <filename>
 import sys
 import re
 file = sys.argv[1]
