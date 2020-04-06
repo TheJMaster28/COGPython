@@ -13,7 +13,7 @@ for line in f:
     if l:
         x = l[0].split(',')
         # print(x)
-        data.write("# {}      {}      {}      {}      {}      {}      {}      ".format(
+        data.write("# Name      Date      Time      {}      {}      {}      {}      {}      {}      {}      ".format(
             x[0], x[1], x[2], x[3], x[4], x[5], x[6]))
         # move on to next line to avoid overlap with other regex
         continue
