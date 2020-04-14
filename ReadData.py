@@ -19,8 +19,8 @@ for line in f:
             data = open(x[0] + '.dat', 'w')
             data.write("# Name      Date      Time      User%      Sys%      Wait%      Idle%      Steal%      Busy      CPUs      memtotal      hightotal      lowtotal      swaptotal      memfree      highfree      lowfree      swapfree      memshared      cached      active      bigfree      buffers      swapcached      inactive\n")
 
-    Writes key as a comment for .dat file for gnuplot
-    gets CPU key first
+    # Writes key as a comment for .dat file for gnuplot
+    # gets CPU key first
     pattern = re.compile(
         'CPU_ALL,CPU Total [a-zA-Z]+,User%,Sys%,Wait%,Idle%,Steal%,Busy,CPUs')
     l = pattern.findall(line)
