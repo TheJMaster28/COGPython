@@ -4,7 +4,8 @@ import re
 import os.path as path
 file = sys.argv[1]
 f = open(file, "r")
-name = ''
+name = ' '
+data = ' '
 for line in f:
 
     pattern = re.compile('[a-zA-z]+ nmon:')
