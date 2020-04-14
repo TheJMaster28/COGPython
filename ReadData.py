@@ -5,14 +5,13 @@ import os.path as path
 file = sys.argv[1]
 f = open(file, "r")
 name = ' '
-data = ' '
 for line in f:
 
-    pattern = re.compile('[a-zA-z]+ nmon:')
+    pattern = re.compile('[a-zA-Z0-9]+ nmon:')
     l = pattern.findall(line)
     if l:
         x = l[0].split(' ')
-        # print(x)
+        #print(x)
         if (path.exists('{}.dat'.format(x[0]))):
 
             data = open(x[0] + '.dat', 'a')
@@ -26,7 +25,6 @@ for line in f:
         'CPU_ALL,CPU Total [a-zA-Z]+,User%,Sys%,Wait%,Idle%,Steal%,Busy,CPUs')
     l = pattern.findall(line)
     if l:
-
         continue
 
     # gets MEM key after CPU key
@@ -34,7 +32,6 @@ for line in f:
         'MEM,Memory MB [a-zA-Z]+,memtotal,hightotal,lowtotal,swaptotal,memfree,highfree,lowfree,swapfree,memshared,cached,active,bigfree,buffers,swapcached,inactive')
     l = pattern.findall(line)
     if l:
-
         continue
 
     # gets time, date, and name of sample
@@ -42,7 +39,7 @@ for line in f:
     l = pattern.findall(line)
     if l:
         x = l[0].split(",")
-        # print(x)
+        #print(x)
         name = x[0]
         time = x[1]
         date = x[2]
@@ -52,7 +49,7 @@ for line in f:
     l = pattern.findall(line)
     if l:
         x = l[0].split(',')
-        # print(x)
+        #print(x)
         user = x[0]
         sys = x[1]
         wait = x[2]
@@ -68,7 +65,7 @@ for line in f:
     l = pattern.findall(line)
     if l:
         x = l[0].split(',')
-        # print(x)
+        #print(x)
         memtotal = x[0]
         hightotal = x[1]
         lowtotal = x[2]
