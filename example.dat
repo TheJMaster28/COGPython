@@ -1,2 +1,0 @@
-# User%      Sys%      Wait%      Idle%      Steal%      Busy      CPUs      memtotal      hightotal      lowtotal      swaptotal      memfree      highfree      lowfree      swapfree      memshared      cached      active      bigfree      buffers      swapcached      inactive
-T7603      02-MAR-2020      15:46:42      13.1      2.7      0.0      84.2      0.0      0      8      15963.2      -0.0      -0.0      2048.8      12739.6      -0.0      -0.0      2048.8      -0.0      1294.6      2187.1      -1.0      144.1      0.0      737.3
