@@ -19,28 +19,22 @@ for line in f:
             data = open(x[0] + '.dat', 'w')
             data.write("# Name      Date      Time      User%      Sys%      Wait%      Idle%      Steal%      Busy      CPUs      memtotal      hightotal      lowtotal      swaptotal      memfree      highfree      lowfree      swapfree      memshared      cached      active      bigfree      buffers      swapcached      inactive\n")
 
-    # Writes key as a comment for .dat file for gnuplot
-    # gets CPU key first
-    # pattern = re.compile('CPU_ALL,CPU Total [a-zA-Z]*,(.*)')
-    # l = pattern.findall(line)
-    # if l:
-    #     x = l[0].split(',')
-    #     # print(x)
-    #     data.write("# Name      Date      Time      {}      {}      {}      {}      {}      {}      {}      ".format(
-    #         x[0], x[1], x[2], x[3], x[4], x[5], x[6]))
-    #     # move on to next line to avoid overlap with other regex
-    #     continue
+    Writes key as a comment for .dat file for gnuplot
+    gets CPU key first
+    pattern = re.compile(
+        'CPU_ALL,CPU Total [a-zA-Z]+,User%,Sys%,Wait%,Idle%,Steal%,Busy,CPUs')
+    l = pattern.findall(line)
+    if l:
 
-    # # gets MEM key after CPU key
-    # pattern = re.compile('MEM,Memory MB [a-zA-Z]*,(.*)')
-    # l = pattern.findall(line)
-    # if l:
-    #     x = l[0].split(',')
-    #     # print(x)
-    #     data.write("{}      {}      {}      {}      {}      {}      {}      {}      {}      {}      {}      {}      {}      {}      {}\n".format(
-    #         x[0], x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8], x[9], x[10], x[11], x[12], x[13], x[14]))
-    #     # move on to next line to avoid overlap with other regex
-    #     continue
+        continue
+
+    # gets MEM key after CPU key
+    pattern = re.compile(
+        'MEM,Memory MB [a-zA-Z]+,memtotal,hightotal,lowtotal,swaptotal,memfree,highfree,lowfree,swapfree,memshared,cached,active,bigfree,buffers,swapcached,inactive')
+    l = pattern.findall(line)
+    if l:
+
+        continue
 
     # gets time, date, and name of sample
     pattern = re.compile('ZZZZ,(.*)')
