@@ -1,10 +1,16 @@
 # to run, use python ReadData.py <filename>
 import sys
 import re
-import os.path as path
+import os
+import time
+start_time = time.time()
 file = sys.argv[1]
 f = open(file, "r")
 name = ' '
+cwd = os.getcwd()
+directory = 'dat_files'
+path = os.path.join(cwd,directory)
+os.mkdir(path)
 for line in f:
 
     pattern = re.compile('[a-zA-Z0-9]+ nmon:')
@@ -12,11 +18,11 @@ for line in f:
     if l:
         x = l[0].split(' ')
         #print(x)
-        if (path.exists('{}.dat'.format(x[0]))):
+        if (os.path.exists('dat_files/{}.dat'.format(x[0]))):
 
-            data = open(x[0] + '.dat', 'a')
+            data = open('dat_files/' + x[0] + '.dat', 'a')
         else:
-            data = open(x[0] + '.dat', 'w')
+            data = open('dat_files/' + x[0] + '.dat', 'w')
             data.write("# Name      Date      Time      User%      Sys%      Wait%      Idle%      Steal%      Busy      CPUs      memtotal      hightotal      lowtotal      swaptotal      memfree      highfree      lowfree      swapfree      memshared      cached      active      bigfree      buffers      swapcached      inactive\n")
 
     # Writes key as a comment for .dat file for gnuplot
@@ -88,3 +94,4 @@ for line in f:
 f.close()
 data.close()
 print("Done with file")
+print("--- %s seconds ---" % (time.time() - start_time))
