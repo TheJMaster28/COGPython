@@ -2,14 +2,14 @@
 import sys
 import re
 import os
-import time
-start_time = time.time()
+import time as clock
+start_time = clock.time()
 file = sys.argv[1]
 f = open(file, "r")
 name = ' '
 cwd = os.getcwd()
 directory = 'dat_files'
-path = os.path.join(cwd,directory)
+path = os.path.join(cwd, directory)
 os.mkdir(path)
 for line in f:
 
@@ -17,7 +17,7 @@ for line in f:
     l = pattern.findall(line)
     if l:
         x = l[0].split(' ')
-        #print(x)
+        # print(x)
         if (os.path.exists('dat_files/{}.dat'.format(x[0]))):
 
             data = open('dat_files/' + x[0] + '.dat', 'a')
@@ -45,7 +45,7 @@ for line in f:
     l = pattern.findall(line)
     if l:
         x = l[0].split(",")
-        #print(x)
+        # print(x)
         name = x[0]
         time = x[1]
         date = x[2]
@@ -55,7 +55,7 @@ for line in f:
     l = pattern.findall(line)
     if l:
         x = l[0].split(',')
-        #print(x)
+        # print(x)
         user = x[0]
         sys = x[1]
         wait = x[2]
@@ -71,7 +71,7 @@ for line in f:
     l = pattern.findall(line)
     if l:
         x = l[0].split(',')
-        #print(x)
+        # print(x)
         memtotal = x[0]
         hightotal = x[1]
         lowtotal = x[2]
@@ -94,4 +94,4 @@ for line in f:
 f.close()
 data.close()
 print("Done with file")
-print("--- %s seconds ---" % (time.time() - start_time))
+print("--- %s seconds ---" % (clock.time() - start_time))
