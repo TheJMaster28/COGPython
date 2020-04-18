@@ -11,8 +11,8 @@ cwd = os.getcwd()
 directory = 'dat_files'
 path = os.path.join(cwd, directory)
 os.mkdir(path)
+print("Starting Read data on %s" % file)
 for line in f:
-
     pattern = re.compile('[a-zA-Z0-9]+ nmon:')
     l = pattern.findall(line)
     if l:
