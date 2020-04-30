@@ -11,3 +11,10 @@ set xdata time
 set timefmt "%d-%b-%Y %H:%M:%S"
 plot 'dijkstra.dat' using 2:4 w line
 ```
+
+To plot with the .p files:
+```
+gnuplot -e "file='MachinceName'" plotUserCPU.p
+```
+
+
